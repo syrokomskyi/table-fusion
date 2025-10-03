@@ -60,17 +60,6 @@ The utility will:
 
 4. **Source Attribution**: Adds `source_file` column with source filename for each row
 
-### Test Results
-
-Processing 3 files resulted in:
-
-- **Size**: 23 rows × 15 columns
-- **Columns**: Album, Artist, Composer, Duration, File name, ISRC, ISWC, Label code, Library code, Publisher, Record label, TC In/Out, Title, Track number, source_file
-- **Distribution by files**:
-  - SUJ SHTRAF 250707: 9 rows
-  - SRC_2500630_IST_VOIT_OLSHEVSKA_NUC_CATASTROF: 7 rows  
-  - SRC_250627_NPA_CHOTYRYDENKA_BONCHEV: 7 rows
-
 ## Advantages
 
 1. **Accuracy**: Correctly identifies headers and reads only meaningful data
