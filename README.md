@@ -15,6 +15,7 @@ This utility provides a streamlined algorithm for merging Excel tables with impr
 - **Complete column mapping** - creates unified structure with all unique headers
 - **Source tracking** - adds `source_file` column for data traceability
 - **Improved algorithm** - handles complex Excel structures more reliably
+- **Recursive search** - finds XLSX files in nested folder structures
 
 ## Installation
 
@@ -40,7 +41,7 @@ python table_fusion.py
 
 The utility will:
 
-- Read all XLSX files from the `data/` directory
+- Read all XLSX files from the `data/` directory and all subfolders
 - Process and merge them into a single table
 - Save the result in the `result/` directory with timestamp format: `YYYY-MM-DD_HH-MM-SS.xlsx`
 
@@ -73,8 +74,12 @@ The utility will:
 table-fusion/
 ├── data/                           # Source XLSX files
 │   ├── SRC_1.xlsx
-│   ├── SRC_2.xlsx
-│   └── SRC_3.xlsx
+│   ├── folder1/
+│   │   ├── SRC_2.xlsx
+│   │   └── subfolder/
+│   │       └── SRC_3.xlsx
+│   └── folder2/
+│       └── SRC_4.xlsx
 ├── result/                         # Output directory
 │   └── YYYY-MM-DD_HH-MM-SS.xlsx
 ├── table_fusion.py                 # Main utility script

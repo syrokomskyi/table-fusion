@@ -36,17 +36,21 @@ class SimplifiedTableFusion:
         self.result_dir.mkdir(exist_ok=True)
     
     def get_xlsx_files(self) -> List[Path]:
-        """Get all XLSX files from data folder, sorted alphabetically"""
+        """Get all XLSX files from data folder and subfolders, sorted alphabetically"""
         if not self.data_dir.exists():
             raise FileNotFoundError(f"Data folder '{self.data_dir}' not found")
         
-        xlsx_files = list(self.data_dir.glob("*.xlsx"))
-        # Sort files alphabetically (by filename)
-        xlsx_files.sort(key=lambda x: x.name.lower())
+        # Search recursively in all subfolders
+        xlsx_files = list(self.data_dir.rglob("*.xlsx"))
         
-        self.logger.info(f"Found {len(xlsx_files)} XLSX files (sorted alphabetically)")
+        # Sort files alphabetically by full path for consistent ordering
+        xlsx_files.sort(key=lambda x: str(x).lower())
+        
+        self.logger.info(f"Found {len(xlsx_files)} XLSX files in data folder and subfolders")
         for i, file_path in enumerate(xlsx_files, 1):
-            self.logger.info(f"  {i}. {file_path.name}")
+            # Show relative path from data_dir for better readability
+            relative_path = file_path.relative_to(self.data_dir)
+            self.logger.info(f"  {i}. {relative_path}")
         
         return xlsx_files
     
@@ -234,6 +238,11 @@ class SimplifiedTableFusion:
         print(f"\nColumn headers:")
         for i, col in enumerate(df.columns, 1):
             print(f"  {i:2d}. {col}")
+        
+        # Show folder structure info
+        print(f"\n📁 Folder structure:")
+        print(f"  Data folder: {self.data_dir}")
+        print(f"  Result folder: {self.result_dir}")
     
     def run(self) -> Path:
         """
