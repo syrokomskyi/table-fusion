@@ -108,8 +108,9 @@ class SimplifiedTableFusion:
             # Remove empty rows
             df = df.dropna(how='all')
             
-            # Add column with source filename
-            df['source_file'] = file_path.stem
+            # Add column with relative path from data directory
+            relative_path = file_path.relative_to(self.data_dir)
+            df['source_file'] = str(relative_path.with_suffix(''))
             
             self.logger.info(f"Read {file_path.name}: {len(df)} rows, {len(df.columns)} columns")
             return df
