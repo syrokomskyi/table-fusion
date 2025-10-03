@@ -19,6 +19,8 @@ This utility provides a streamlined algorithm for merging Excel tables with impr
 
 ## Installation
 
+See also [guide.uk](guide.uk.md).
+
 Install required packages:
 
 ```bash
